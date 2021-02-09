@@ -6,6 +6,7 @@ import { UiComponent } from './components/ui/ui.component';
 
 @NgModule({
   declarations: [UiComponent],
+  exports: [UiComponent],
   imports: [
     CommonModule
   ]
