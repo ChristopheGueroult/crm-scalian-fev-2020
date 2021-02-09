@@ -1,0 +1,21 @@
+:host {
+  height: 100%;
+}
+
+div {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex-grow: 1;
+  background: var(--app-darklight);
+}
+
+header {
+  background: var(--app-dark);
+}
+nav {
+  background: var(--app-dark);
+}
