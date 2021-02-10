@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, Router, RouterModule, Routes } from '@angular/router';
 import { PageForgotPasswordComponent } from './login/pages/page-forgot-password/page-forgot-password.component';
 import { PageResetPasswordComponent } from './login/pages/page-reset-password/page-reset-password.component';
 import { PageSigninComponent } from './login/pages/page-signin/page-signin.component';
@@ -7,10 +7,6 @@ import { PageSignupComponent } from './login/pages/page-signup/page-signup.compo
 
 const routes: Routes = [
   { path: '', redirectTo: '/signup', pathMatch: 'full' },
-  { path: 'signup', component: PageSignupComponent },
-  { path: 'signin', component: PageSigninComponent },
-  { path: 'forgot', component: PageForgotPasswordComponent },
-  { path: 'reset', component: PageResetPasswordComponent },
   {
     path: 'clients',
     loadChildren: () => import('./clients/clients.module').then(m => m.ClientsModule)
@@ -26,7 +22,20 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(
+    routes,
+    {
+      preloadingStrategy: PreloadAllModules
+    }
+  )],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  // Diagnostic only: inspect router configuration
+  constructor(router: Router) {
+    // Use a custom replacer to display function names in the route configs
+    const replacer = (key: any, value: any) => (typeof value === 'function') ? value.name : value;
+
+    console.log('Routes: ', JSON.stringify(router.config, replacer, 2));
+  }
+}
