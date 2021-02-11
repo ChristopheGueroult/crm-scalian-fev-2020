@@ -1,12 +1,13 @@
 <app-template-fullwidth [title]="title">
-  <app-tableau-light *ngIf="collection" [headers]="headers">
+  <!-- {{ collection | json }} -->
+  <app-tableau-light *ngIf="collection$ | async as collection" [headers]="headers">
     <tr *ngFor="let item of collection">
       <td>{{ item.typePresta }}</td>
-      <td>{{ item.client }}</td>
+      <td>{{ item.client | uppercase }}</td>
       <td>{{ item.nbJours }}</td>
-      <td>{{ item.tjmHt |currency }}</td>
-      <td>{{ item.tjmHt | total: item.nbJours }}</td>
-      <td>{{ item.tjmHt | total: item.nbJours: item.tva }}</td>
+      <td>{{ item.tjmHt | currency }}</td>
+      <td>{{ item.tjmHt | total: item.nbJours | currency }}</td>
+      <td>{{ item.tjmHt | total: item.nbJours: item.tva | currency }}</td>
       <td>{{ item.state }}</td>
     </tr>
   </app-tableau-light>
