@@ -10,15 +10,33 @@ import { OrdersService } from 'src/app/core/services/orders.service';
 export class PageListOrdersComponent implements OnInit {
   public title = 'All orders';
   public collection!: Order[];
+  public headers!: string[];
   constructor(private ordersService: OrdersService) {
     this.ordersService.collection.subscribe((datas) => {
       this.collection = datas;
-      console.log(datas);
-
+      // console.log(datas);
     });
+    this.headers = [
+      'Type',
+      'Client',
+      'NbJours',
+      'Tjm HT',
+      'Total HT',
+      'Total TTC',
+      'State',
+    ];
   }
 
   ngOnInit(): void {
+  }
+
+  public totalHt(item: Order): number {
+    console.log('TOTAL HT CALLED');
+    return item.nbJours * item.tjmHt;
+  }
+  public totalTtc(item: Order): number {
+    console.log('TOTAL TTC CALLED');
+    return this.totalHt(item) * (1 + item.tva / 100);
   }
 
 }

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-tableau-light',
@@ -6,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tableau-light.component.scss']
 })
 export class TableauLightComponent implements OnInit {
-
-  constructor() { }
+  @Input() headers!: string[];
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

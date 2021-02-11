@@ -12,7 +12,7 @@ export class OrdersService {
   // collection en private
   private collection$!: Observable<Order[]>;
   constructor(private http: HttpClient) {
-    this.collection = this.http.get<Order[]>(this.urlApi + '/orders');
+    this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`);
   }
 
   // get collection
