@@ -11,5 +11,7 @@
       <td>{{ item.state }}</td>
     </tr>
   </app-tableau-light>
-</app-template-fullwidth>
 
+  <app-btn route="add" label="Add order"></app-btn>
+  <app-btn [action]="true" label="Open PopUp" (clicked)="openPopUp()"></app-btn>
+</app-template-fullwidth>

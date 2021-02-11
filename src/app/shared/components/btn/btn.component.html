@@ -1,1 +1,2 @@
-<p>btn works!</p>
+<a *ngIf="route" [routerLink]="route">{{ label }}</a>
+<button *ngIf="action" (click)="doAction()">{{ label }}</button>

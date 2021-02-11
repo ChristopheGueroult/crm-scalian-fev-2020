@@ -5,13 +5,15 @@ import { IconsModule } from '../icons/icons.module';
 import { TableauLightComponent } from './components/tableau-light/tableau-light.component';
 import { BtnComponent } from './components/btn/btn.component';
 import { TotalPipe } from './pipes/total.pipe';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
   declarations: [TableauLightComponent, BtnComponent, TotalPipe],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   exports: [
     TemplatesModule,

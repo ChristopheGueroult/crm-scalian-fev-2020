@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from 'src/app/core/services/orders.service';
 
@@ -8,7 +8,13 @@ import { OrdersService } from 'src/app/core/services/orders.service';
   templateUrl: './page-list-orders.component.html',
   styleUrls: ['./page-list-orders.component.scss']
 })
-export class PageListOrdersComponent implements OnInit {
+export class PageListOrdersComponent implements OnInit, OnDestroy {
+  // example d'observable perso
+  private testObservablePerso: Observable<any> = new Observable<any>((listXofSubscribes) => {
+    listXofSubscribes.next('string');
+  });
+  // example de variable pour les unsubscribe
+  private sub!: Subscription;
   public title = 'All orders';
   // public collection!: Order[];
   public collection$!: Observable<Order[]>;
@@ -31,6 +37,20 @@ export class PageListOrdersComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.sub = this.testObservablePerso.subscribe(
+      (datas) => {
+        console.log(datas);
+      }
+    );
+  }
+
+  public openPopUp(): void {
+    console.log('open popup works !');
+  }
+
+  ngOnDestroy(): void {
+    // exemple de unsubscribe()
+    this.sub.unsubscribe();
   }
 
 }
