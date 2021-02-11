@@ -30,13 +30,4 @@ export class PageListOrdersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public totalHt(item: Order): number {
-    console.log('TOTAL HT CALLED');
-    return item.nbJours * item.tjmHt;
-  }
-  public totalTtc(item: Order): number {
-    console.log('TOTAL TTC CALLED');
-    return this.totalHt(item) * (1 + item.tva / 100);
-  }
-
 }
