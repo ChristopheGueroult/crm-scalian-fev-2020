@@ -1,0 +1,32 @@
+☐ page-list-order.html
+  ☐ ajouter une colone action avec un icon-edit devant chaque ligne
+  ☐ ajouter un click sur l'icon qui appel une fn goToEdit(item)
+☐ page-list-order.ts
+  ☐ Ecrire la fn goToEdit(item: Order) { rediriger vers la route orders/edit/item.id }
+☐ orders-routing.ts
+  ☐ ajouter une route edit qui prend un paramètre id dans l'url
+☐ page-edit-order.ts
+  ☐ récupérer l'id dans la route
+  ☐ appeler ordersService.getItemById(id).subscribe((item) => {})
+  ☐ l'item est dans le subscribe, on doit l'enregistrer dans une variable item
+☐ page-edit-order.html
+  ☐ on instancie template container avec un title
+  ☐ on project form order dans le template container
+  ☐ Binder item avec l'input init de form-order.ts
+  ☐ on utilise l'output submited qui appel une fn update($event)
+☐ page-edit-order.ts
+  ☐ déclarer la fn update(item: Order) qui fait un appel à ordersService.update(item).subscribe((res) => {})
+  ☐ Injecter OrdersService dans le constructor
+  ☐ Injecter Router dans le constructor
+  ☐ dans le subscribe() à l'interieur de la fn update on redirige l'utilisateur vers la route orders
+☐ orders-service.ts
+  ☐ déclarer la fonction update(item: Order): Observable<Order>
+  ☐ déclarer la fonction getItemById(id): Observable<Order>
+
+☐ page-list-order.hmtl
+  ☐ dans la colone action, ajouter un icon-delete avec un (click)="delete(item)"
+☐ page-list-order.ts
+  ☐ déclarer la fonction delete(item: Order): void
+  ☐ dans delete() appeler la fn deleteItem(item): Observable de OrdersService
+  ☐ faire le subscribe() et dans le subscribe() maj la collection$ coté front à partir d'un nouvel appel http
+
