@@ -1,31 +1,11 @@
 {
   "orders": [
     {
-      "tjmHt": 1100,
-      "nbJours": 30,
-      "tva": 20,
-      "state": "CONFIRMED",
-      "typePresta": "Coaching",
-      "client": "nemesys",
-      "comment": "Merci Nemesys pour les 33 k",
-      "id": 2
-    },
-    {
-      "tjmHt": 1100,
-      "nbJours": 1,
-      "tva": 20,
-      "state": "CANCELED",
-      "typePresta": "Coaching",
-      "client": "Modis",
-      "comment": null,
-      "id": 3
-    },
-    {
       "tjmHt": 1200,
       "nbJours": 10,
       "tva": 20,
       "state": "CANCELED",
-      "typePresta": "Coaching",
+      "typePresta": "Coachingff",
       "client": "Modis",
       "comment": "Merci Modis trop sympa",
       "id": 4
@@ -59,16 +39,6 @@
       "client": "Modis",
       "comment": "dfhgsdfgh",
       "id": 7
-    },
-    {
-      "tjmHt": 1200,
-      "nbJours": 5,
-      "tva": 20,
-      "state": "OPTION",
-      "typePresta": "formation",
-      "client": "nemesys",
-      "comment": "qdgsdf",
-      "id": 8
     }
   ],
   "clients": [

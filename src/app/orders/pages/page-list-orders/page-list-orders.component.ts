@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 import { Order } from 'src/app/core/models/order';
 import { OrdersService } from 'src/app/core/services/orders.service';
@@ -21,7 +22,10 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   // public collection!: Order[];
   public collection$: Subject<Order[]> = new Subject<Order[]>();
   public headers!: string[];
-  constructor(private ordersService: OrdersService) {
+  constructor(
+    private ordersService: OrdersService,
+    private router: Router,
+  ) {
     this.ordersService.collection.subscribe((datas) => {
       this.collection$.next(datas);
       // console.log(datas);
@@ -62,6 +66,18 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   public openPopUp(): void {
     console.log('open popup works !');
+  }
+
+  public delete(item: Order): void {
+    this.ordersService.deleteItem(item).subscribe((data) => {
+      this.ordersService.collection.subscribe((datas) => {
+        this.collection$.next(datas);
+      });
+    });
+  }
+
+  public goToEdit(item: Order): void {
+    this.router.navigate(['orders', 'edit', item.id]);
   }
 
   ngOnDestroy(): void {
