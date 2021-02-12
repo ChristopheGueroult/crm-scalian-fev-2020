@@ -6,11 +6,13 @@ import { PageAddOrderComponent } from './pages/page-add-order/page-add-order.com
 import { OrdersRoutingModule } from './orders-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { FormOrderComponent } from './components/form-order/form-order.component';
+import { DetailOrderComponent } from './components/detail-order/detail-order.component';
+import { CommentOrderComponent } from './components/comment-order/comment-order.component';
 
 
 
 @NgModule({
-  declarations: [PageListOrdersComponent, PageEditOrderComponent, PageAddOrderComponent, FormOrderComponent],
+  declarations: [PageListOrdersComponent, PageEditOrderComponent, PageAddOrderComponent, FormOrderComponent, DetailOrderComponent, CommentOrderComponent],
   imports: [
     CommonModule,
     OrdersRoutingModule,

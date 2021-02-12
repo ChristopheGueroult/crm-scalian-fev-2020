@@ -20,17 +20,18 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
   private sub!: Subscription;
   public title = 'All orders';
   // public collection!: Order[];
-  public collection$: Subject<Order[]> = new Subject<Order[]>();
+  public collection$: Subject<Order[]>;
   public headers!: string[];
   constructor(
     private ordersService: OrdersService,
     private router: Router,
   ) {
-    this.ordersService.collection.subscribe((datas) => {
-      this.collection$.next(datas);
-      // console.log(datas);
-    });
-    // this.collection$ = this.ordersService.collection;
+    // this.ordersService.collection.subscribe((datas) => {
+    //   this.collection$.next(datas);
+    //   // console.log(datas[0]);
+    // });
+    this.ordersService.refreshSubject();
+    this.collection$ = this.ordersService.collection;
     this.headers = [
       'Action',
       'Type',
@@ -70,14 +71,19 @@ export class PageListOrdersComponent implements OnInit, OnDestroy {
 
   public delete(item: Order): void {
     this.ordersService.deleteItem(item).subscribe((data) => {
-      this.ordersService.collection.subscribe((datas) => {
-        this.collection$.next(datas);
-      });
+      // this.ordersService.collection.subscribe((datas) => {
+      //   this.collection$.next(datas);
+      // });
+      this.ordersService.refreshSubject();
     });
   }
 
   public goToEdit(item: Order): void {
     this.router.navigate(['orders', 'edit', item.id]);
+  }
+
+  public getDetail(item: Order): void {
+    this.ordersService.item$.next(item);
   }
 
   ngOnDestroy(): void {

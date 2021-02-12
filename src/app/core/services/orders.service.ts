@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Order } from '../models/order';
 
@@ -8,22 +8,32 @@ import { Order } from '../models/order';
   providedIn: 'root'
 })
 export class OrdersService {
+  public item$: BehaviorSubject<Order> = new BehaviorSubject(new Order());
   private urlApi = environment.urlApi;
   // collection en private
-  private collection$!: Observable<Order[]>;
+  private collection$: Subject<Order[]> = new Subject<Order[]>();
   constructor(private http: HttpClient) {
-    this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`);
+    // this.collection = this.http.get<Order[]>(`${this.urlApi}/orders`);
+  }
+
+  public refreshSubject(): void {
+    this.http.get<Order[]>(`${this.urlApi}/orders`).subscribe(datas => {
+      // this.item$.next(datas[0]);
+      this.item$.next(datas[0]);
+
+      this.collection$.next(datas);
+    });
   }
 
   // get collection
-  get collection(): Observable<Order[]> {
+  get collection(): Subject<Order[]> {
     return this.collection$;
   }
 
   // set collection
-  set collection(obs: Observable<Order[]>) {
-    this.collection$ = obs;
-  }
+  // set collection(obs: Observable<Order[]>) {
+  //   this.collection$ = obs;
+  // }
 
   // change state
 

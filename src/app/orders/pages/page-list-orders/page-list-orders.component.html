@@ -1,10 +1,11 @@
 <app-template-fullwidth [title]="title">
   <!-- {{ collection | json }} -->
-  <app-tableau-light *ngIf="collection$ | async as collection" [headers]="headers">
+  <app-tableau-light [headers]="headers" *ngIf="collection$ | async as collection">
     <tr *ngFor="let item of collection">
       <td>
         <app-icon-edit (click)="goToEdit(item)"></app-icon-edit>
         <app-icon-delete (click)="delete(item)"></app-icon-delete>
+        <span (click)="getDetail(item)">detail</span>
       </td>
       <td>{{ item.typePresta }}</td>
       <td>{{ item.client | uppercase }}</td>
@@ -18,4 +19,15 @@
 
   <app-btn route="add" label="Add order"></app-btn>
   <app-btn [action]="true" label="Open PopUp" (clicked)="openPopUp()"></app-btn>
+
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="detail">Detail</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="comment">Comment</a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+
 </app-template-fullwidth>
