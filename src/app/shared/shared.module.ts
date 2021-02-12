@@ -6,6 +6,7 @@ import { TableauLightComponent } from './components/tableau-light/tableau-light.
 import { BtnComponent } from './components/btn/btn.component';
 import { TotalPipe } from './pipes/total.pipe';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +21,8 @@ import { RouterModule } from '@angular/router';
     IconsModule,
     TableauLightComponent,
     BtnComponent,
-    TotalPipe
+    TotalPipe,
+    ReactiveFormsModule
   ]
 })
 export class SharedModule { }
